@@ -2,10 +2,10 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import {Configuration, OpenAIApi} from "openai";
-const apikey = "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"
+const apikey = ""
 const configuration = new Configuration({
     organization: "org-5hixOwK40DjyoIfTt8rNO6SQ",
-    apiKey: apikey,
+    apiKey: `${process.env.OPENAI_API_KEY}`,
 });
 const openai = new OpenAIApi(configuration);
 
@@ -23,16 +23,11 @@ app.post("/", async (req, res) => {
             prompt: `${message}`,
             max_tokens: 1500,
             temperature: 0.8,
-        },
-        {
-            headers: {
-                'Authorization': 'Bearer ' + apikey
-            }
-        });
+        }
+       );
         res.json({message: aiResponce.data.choices[0].text});
     } catch (error) {
-        console.error(error) // from creation or business logic
-        res.json({message: 'error'});
+        res.json(error);
     }
     
    
