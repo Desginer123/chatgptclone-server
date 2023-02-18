@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import {Configuration, OpenAIApi} from "openai";
 const configuration = new Configuration({
     organization: "org-GbLMg4RhsXc3ClODecgJIKdn",
-    apiKey: "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",
+    apiKey: "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",
 });
 const openai = new OpenAIApi(configuration);
 
@@ -25,7 +25,7 @@ app.post("/", async (req, res) => {
         },
         {
             headers: {
-                'Authorization': `Bearer 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`,
+                'Authorization': `Bearer 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`,
             }
         });
         res.json({message: aiResponce.data.choices[0].text});
