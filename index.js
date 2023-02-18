@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import {Configuration, OpenAIApi} from "openai";
-const apikey = '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'
+const apikey = "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"
 const configuration = new Configuration({
     organization: "org-GbLMg4RhsXc3ClODecgJIKdn",
     apiKey: apikey,
@@ -21,7 +21,7 @@ app.post("/", async (req, res) => {
         const aiResponce = await openai.createCompletion({
             model: "text-davinci-003",
             prompt: `${message}`,
-            max_tokens: 150,
+            max_tokens: 1500,
             temperature: 0.8,
         },
         {
