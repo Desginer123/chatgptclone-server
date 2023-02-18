@@ -2,9 +2,9 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import {Configuration, OpenAIApi} from "openai";
-const apikey = "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"
+const apikey = "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"
 const configuration = new Configuration({
-    organization: "org-GbLMg4RhsXc3ClODecgJIKdn",
+    organization: "org-5hixOwK40DjyoIfTt8rNO6SQ",
     apiKey: apikey,
 });
 const openai = new OpenAIApi(configuration);
