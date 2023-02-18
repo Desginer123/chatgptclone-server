@@ -22,6 +22,11 @@ app.post("/", async (req, res) => {
             prompt: `${message}`,
             max_tokens: 150,
             temperature: 0.8,
+        },
+        {
+            headers: {
+                'Authorization': `Bearer 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`,
+            }
         });
         res.json({message: aiResponce.data.choices[0].text});
     } catch (error) {
