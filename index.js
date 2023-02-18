@@ -16,13 +16,20 @@ const port = 3080;
 
 app.post("/", async (req, res) => {
     const {message} = req.body;
-    const aiResponce = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: `${message}`,
-        max_tokens: 150,
-        temperature: 0.8,
-    });
-    res.json({message: aiResponce.data.choices[0].text});
+    try {
+        const aiResponce = await openai.createCompletion({
+            model: "text-davinci-003",
+            prompt: `${message}`,
+            max_tokens: 150,
+            temperature: 0.8,
+        });
+        res.json({message: aiResponce.data.choices[0].text});
+    } catch (error) {
+        console.error(error) // from creation or business logic
+        res.json({message: 'error'});
+    }
+    
+   
 });
 
 app.listen(port, (err, res) => {
