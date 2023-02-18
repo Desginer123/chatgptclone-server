@@ -1,0 +1,30 @@
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
+import {Configuration, OpenAIApi} from "openai";
+const configuration = new Configuration({
+    organization: "org-GbLMg4RhsXc3ClODecgJIKdn",
+    apiKey: "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",
+});
+const openai = new OpenAIApi(configuration);
+
+const app = express();
+app.use(bodyParser.json());
+app.use(cors());
+
+const port = 3080;
+
+app.post("/", async (req, res) => {
+    const {message} = req.body;
+    const aiResponce = await openai.createCompletion({
+        model: "text-davinci-003",
+        prompt: `${message}`,
+        max_tokens: 150,
+        temperature: 0.8,
+    });
+    res.json({message: aiResponce.data.choices[0].text});
+});
+
+app.listen(port, (err, res) => {
+    console.log(`Server is listening on ${port}`);
+});
